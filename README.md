@@ -1,105 +1,103 @@
-[TOC]
-# Vim Note and Configurations
-## Reference
+# Shell Notebook
 
-- [How to Customize Your Vim Code Editor with Mappings, Vimscript, Status Line, and More](https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/)
-- [Buffers, Windows, and Tabs](https://learnvim.irian.to/basics/buffers_windows_tabs)
-- [vi Complete Key Binding List](https://hea-www.harvard.edu/~fine/Tech/vi.html)
-- [Fold](https://learnvim.irian.to/basics/fold)
-- [RegexOne](https://regexone.com)
-- [RegexLearn](https://regexlearn.com)
+## Shebang
 
-## What is `.vimrc`?
+- Format: `#!<interpreter_path>` (e.g., `#!bin/bash` or `#!bin/zsh`)
+- Position: The first line of the script.
+- Functionality: Specify which interpreter to use to run the script.
 
-`.vimrc` is served as customised configurations for Vim. For macOS, it's normally saved under the user's home directory as a hidden file. In other cases, Vim checks the other potential paths in the following order:
+## Variables
 
-1. $VIMINIT
-2. `$HOME/.vimrc`
-3. `$HOME/.vim/vimrc`
-4. `$EXINIT`
-5. `$HOME/.exrc`
-6. `$VIMRUNTIME/default.vim`
+- Definition: A variable can contain a number, a character or a string. For example,
 
-When Vim is opened, the first matched `.vimrc` will be loaded and the rest will be ignored.
+  ```shell
+  STUDENT_AGE=18
+  StudentGender=F
+  studentName="Alice"
+  ```
 
-In general, a `.vimrc` includes:
+- No space is allowed on either side of `=` when initialising variables.
 
-- Plugins
-- Settings
-- Mappings
-- Custom functions
-- Custom commands
+- Naming Rules: 
 
-## What is `.vim`?
+  - Variable names are case-sensitive.
+  - Start with a letter or underscore.
+  - Use only letters, numbers and underscores.
+  - Lowercase for local variables, e.g. `file_name="shell_notebook.md"`.
+  - Uppercase for environment variables and constants, e.g. `MAX_ITERS=10`.
 
- `.vim` folder is typically used to store configuration files, plugins, and other resources related to the Vim text editor. Vim is a highly configurable and extensible text editor, and users often customise its behaviour by placing configuration files and additional resources in the `.vim` directory.
+- Escaping Special Characters: Use `\<special_character>` to escape.
 
-## Buffers, windows and tabs
+- Encapsulating Variable Names: Use `${variable_name}` to avoid ambiguity. Any space inside double quotes `""` will be preserved. For example,
 
-- Buffer: An in-memory space associated with files opened in Vim. One buffer is tied with one file.
+  ```bash
+  price_of_milk=3
+  echo "Today's milk price is ${price_of_milk} dollars per bottle."
+  ```
 
-  | Operation | Command                                                      |
-  | :-------- | :----------------------------------------------------------- |
-  | List      | `:buffers`, `:ls`, `:files`                                  |
-  | Navigate  | `:bnext`/`:bn`, `:bprevious`/`:bp`,  `:buffer`+`buffer_num`/`:b`+`buffer_num` |
-  | Delete    | `:bdelete`[+`buffer_num`]/`:bd`[+`buffer_num`]               |
-  | Exit all  | `:qall`/`:qa`, `:qall!`/`:qa!`, `:wqall`/`:wqa`              |
+- Encapsulating Commands: Use ``` `<command>` ``` or  `$(<command>)` to assign variables with outcomes from commands. or example,
 
-- Window: A viewport onto a buffer. One buffer can have multiple views.
+  ```  bash
+  current_path=`pwd`
+  file_with_timestamp="file_$(date +%Y-%m-%d).txt"
+  ```
 
-  | Operation | Command                                                      |
-  | --------- | ------------------------------------------------------------ |
-  | Split     | `:split`[+`file_path`]/`:sp`[+`file_path`]/`ctrl`+`w`+`s`, `:vsplit`[+`file_path`]/:`vsp`[+`file_path`]/ `ctrl`+`w`+`v` |
-  | Navigate  | `ctrl`+`w`+`h`(left)/`l`(right)/`j`(down)/`k`(up)/`w`(next)  |
-  | Close     | `:quit`/`:q`/`ctrl`+`w`+`o`(only keep the current window)    |
+## Passing Arguments to Scripts
 
-- Tab: A collection of windows. One tab contains multiple windows.
+- Passing Arguments: Append arguments sequentially after the script name. For example:
 
-  | Operation       | Command                                                      |
-  | --------------- | ------------------------------------------------------------ |
-  | List            | `:tabs`                                                      |
-  | Create          | `:tabnew`+`file_path`                                        |
-  | Close           | `:tabclose`                                                  |
-  | Navigate        | `:tabn`+`tab_num`, `:tabnext`/`:tabn`, `:tabprevious`/`:tabp`, `:tablast`/`:tabl`, `:tabfirst` |
-  | Open with a tab | `vim -p`+`file_1 file_2 file_3 ...`                          |
+  ```bash
+  source ./student.sh Bob 20 Male
+  ```
 
-When closing windows/tabs, only the views of the buffers are closed, the buffers themselves still exist.
+- Accessing Arguments in the Script:
 
-## Mapping
+  - `$0`: Script name.
+  - `$1`, `$2`, `$3`, etc.: The first, second, third, etc. arguments passed to the script.
+  - `$@`: All the arguments passed to the script.
+  - `$#`: The number of arguments passed to the script.
 
-Mapping syntax: `mapping_mode new_key old_key`
+## Arrays
 
-- `nnoremap`: mappings in normal mode
-- `inoremap`: mappings in insert mode
-- `vnoremap`: mappings in visual mode
+- Declaring Arrays: Use `()` to enclose array values separated by spaces, and assign them to a variable. For example,
 
-A `mapleader` is an unused key associated with other keys to create new mappings. The default `mapleader` is `\`. To set a new `mapleader`: `let mapleader=new_leader_key`.
+  ```shell
+  null=()
+  students=("Jeff" "Jerry" "Jason" "Jimmy")
+  ```
 
-## Regrex Cheatsheet
+- Indexing Elements: Use `${<array>[<index>]}` or `$<array>[<index>]` to access the element under the index. Use `${<array>[@]}` to access all elements. For example:
 
-| Pattern     | Note                                          |
-| ----------- | --------------------------------------------- |
-| `abc...`    | Letters                                       |
-| `123...`    | Digits                                        |
-| `\d`        | Any digit                                     |
-| `\D`        | Any non-digit                                 |
-| `.`         | Any character                                 |
-| `\.`        | Period                                        |
-| `[abc]`     | Only a, b or c                                |
-| `[^abc]`    | Not a, b nor c                                |
-| `[a-z]`     | Letters from a to z                           |
-| `[0-9]`     | Digits from 0 to 9                            |
-| `\w`        | Any alphanumeric (letters & digits) character |
-| `\W`        | Any non-alphanumeric character                |
-| `{m}`       | m times repetitions                           |
-| `{m,n}`     | m to n times repetitions                      |
-| `*`         | 0 or more repetitions                         |
-| `+`         | 1 or more repetitions                         |
-| `?`         | Optional character                            |
-| `\s`        | Any whitespace                                |
-| `\S`        | Any non-whitespace                            |
-| `^...$`     | Start and end                                 |
-| `(...)`     | Group capture                                 |
-| `(a(bc))`   | Subgroup capture                              |
-| `(.*)`      | Any group capture                             |
-| `(abc|def)` | Match abc or def                              |
+  ``` bash
+  # Array indices start with 1
+  echo ${students[1]}   # Jeff
+  echo ${students[-1]}  # Jimmy
+  echo ${students[@]}   # Jeff Jerry Jason Jimmy
+  
+  # Modify elements by indices
+  students[2]="Alice"
+  echo ${studnets[2]}   # Alice
+  ```
+
+- Length: Use `${#<array>[@]}` or `$#<array>[@]` to determine the length of an array. For example,
+
+  ```bash
+  echo "The total number of students is ${#students[@]}."
+  ```
+
+- Deleting Elements: Use `unset '<array>[<index>]'` to delete a specific element or `unset '<array>'` to delete the entire array. After unsetting an element. the length remains the same as the array structure didn't change. For example,
+
+  ```bash
+  unset 'students[-1]'  # Delete Jimmy
+  echo ${studnets[@]}   # Jeff Alice Jason
+  echo ${#students[@]}  # Still 4
+  
+  students=(${students[@]})  # Re-index the array to update its structure
+  echo ${#students[@]}       # Update to 3
+  
+  unset 'students'      # Delete the entire array
+  echo ${#students[@]}  # 0 without re-indexing
+  ```
+
+  
+

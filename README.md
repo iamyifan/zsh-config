@@ -1,3 +1,6 @@
+<!-- START doctoc -->
+<!-- END doctoc -->
+
 # Shell Notebook
 
 ## Shebang

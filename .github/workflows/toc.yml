@@ -7,4 +7,6 @@ jobs:
     steps:
       - uses: technote-space/toc-generator@v4
         with:
-          access-token: ${{ secrets.ACTION}}
+          GITHUB_TOKEN: ${{ secrets.ACTION }}
+    permissions:
+      contents: write

@@ -1,5 +1,8 @@
-<!-- START doctoc -->
-<!-- END doctoc -->
+- [Shell Notebook](#shell-notebook)
+  * [Shebang](#shebang)
+  * [Variables](#variables)
+  * [Passing Arguments to Scripts](#passing-arguments-to-scripts)
+  * [Arrays](#arrays)
 
 # Shell Notebook
 

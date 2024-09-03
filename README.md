@@ -10,9 +10,8 @@
 
 ## Shebang
 
-- Format: `#!<shell_path>` (e.g., `#!bin/bash` or `#!bin/zsh`)
-- Position: The first line of the script.
-- Functionality: Specify which interpreter to use to run the script.
+- Format: `#!<path_to_shell>` (e.g., `#!/bin/bash` for Bash or `#!/bin/zsh` for Zsh)
+- Position: The **first line**  of the script.
 
 ## Variables
 
@@ -20,11 +19,13 @@
 
   ```shell
   STUDENT_AGE=18
-  StudentGender=F
-  studentName="Alice"
+  StudentGender="F"    # StudentGender=F
+  studentName="Alice"  # studentName=Alice
   ```
 
 - **No space** is allowed on either side of `=` when initialising variables.
+
+- **Double quotes** ensure the string is treated as a single, literal unit, especially when it contains spaces or special characters.
 
 - Naming Rules: 
 

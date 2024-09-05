@@ -18,7 +18,7 @@ Notice that command behaviours may vary depending on different specifications.
 - [Passing Arguments to Scripts](#passing-arguments-to-scripts)
 - [Arrays](#arrays)
 - [Arithmetic Operations](#arithmetic-operations)
-- [String Operations](##string-operations)
+- [String Operations](#string-operations)
 
 ## Shebang
 

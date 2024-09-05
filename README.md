@@ -1,5 +1,16 @@
 # Shell Notebook
 
+## Announcement
+
+Code in this notebook is tested under the following environment:
+
+- OS: macOS 14.6.1 23G93 arm64
+- Kernel: Darwin 23.6.0
+- Shell: zsh 5.9
+- Terminal: Apple_Terminal
+
+Notice that command behaviours may vary depending on different specifications.
+
 ## Table of Content
 
 - [Shebang](#shebang)
@@ -7,11 +18,12 @@
 - [Passing Arguments to Scripts](#passing-arguments-to-scripts)
 - [Arrays](#arrays)
 - [Arithmetic Operations](#arithmetic-operations)
+- [String Operations](##string-operations)
 
 ## Shebang
 
 - Format: `#!<path_to_shell>` (e.g., `#!/bin/bash` for Bash or `#!/bin/zsh` for Zsh)
-- Position: The **first line**  of the script.
+- Position: The **first line** of the script.
 
 ## Variables
 
@@ -164,3 +176,114 @@
   
   compare 2**3 3**2  # 8 (2^3) is smaller than 9 (3^2)
   ```
+
+## String Operations
+
+- String Length: `${#<string>}`
+
+- **Extracting Substrings**
+
+  -  `${<string>:<start>:<length>}`: Extract a substring of length `<length>` starting after the index `<start>`.
+
+    ```shell
+    string="hello world"
+    substring=${string:6:5}  # a substring of length 5 starting after the index 6
+    echo ${substring}  			 # "world"
+    ```
+
+  - `${<string>:<start>>`: Extract a substring starting after the index `<start>` and ending to the end of line.
+
+    ```shell
+    string="hello world"
+    substring=${string:2}  # a substring starting after the index 2
+    echo ${substring}			 # "llo world"
+    ```
+
+- **Replacing Substrings**
+
+  - Replacing the **First Occurrence** of a Substring with Replacement
+
+    Format: `${<string>[@]/$<substring_to_replace>/$<replacement_of_substring>}`
+
+    ```shell
+    string="To study or not to study, that is the question."
+    substring="study"
+    replacement="sleep"
+    echo ${string[@]/$substring/$replacement}   # "To sleep or not to study, that is the question."
+    ```
+	  
+	- Replacing **All Occurrences** of a Substring with Replacement
+	
+	  Format: `${<string>[@]//$<substring_to_replace>/$<replacement_of_substring>}`
+	
+	  ```shell
+	  string="To study or not to study, that is the question."
+	  substring="study"
+	  replacement="be"
+	  echo ${string[@]//$substring/$replacement}  # "To be or not to be, that is the question."
+	  ```
+
+	- Deleting the **First Occurrence** of a Substring
+	
+	  Format: `${<string>[@]/$<substring_to_replace>}`
+	
+	  ```shell
+	  string="To study or not to study, that is the question."
+	  substring=" study"
+	  echo ${string[@]/$substring}  # "To or not to study, that is the question."
+	  ```
+
+	- Deleting **All Occurrences** of a Substring
+	
+	  Format: `${<string>[@]//$<substring_to_replace>}`
+	
+	  ```shell
+	  string="To study or not to study, that is the question."
+	  substring=" study"
+	  echo ${string[@]//$substring}  # "To or not to, that is the question."
+	  ```
+	
+	- Replacing the Substring if It Is at the **Start of a String**
+
+	  Format: `${<string>[@]/#$<substring_to_replace>/$<replacement_of_substring>}`
+	
+	  ```shell
+	  string="To study or not to study, that is the question."
+	  substring="To study"
+	  replacement="To play"
+	  echo ${string[@]/#$substring/$replacement}  # "To play or not to study, that is the question."
+	  ```
+	
+	- Replacing the Substring if It Is at the **End of a String**
+	
+	  Format: `${<string>[@]/%$<substring_to_replace>/$<replacement_of_substring>}`
+	
+	  ```shell
+	  string="To study or not to study, that is the question."
+	  substring="the question."
+	  replacement="not a question."
+	  echo ${string[@]/%$substring/$replacement}  # "To study or not to study, that is not a question."
+	  ```
+	
+- Capitalising/Uncapitalising
+
+  - Capitalising/Uncapitalising **All Letters**
+
+    Format: `${<string>:u}` for uppercasing; `${<string>:l}` for lowercasing
+
+    ```shell
+    string="Hello World"
+    echo ${string:u}  # HELLO WORLD
+    echo ${string:l}  # hello world
+    ```
+  
+	- Capitalising the **First Letter of Each Word**
+	
+	  Format: `${(C)<string>}`
+	
+	  ```shell
+	  string="i love shell"
+	  echo ${(C)string}  # I Love Shell
+	  ```
+	
+	  

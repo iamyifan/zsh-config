@@ -107,7 +107,7 @@ Notice that command behaviours may vary depending on different specifications.
 
   ```bash
   echo ${students[@]}   # Jeff Jerry Jason Jimmy
-  students[2]="Alice"		# Replace Jerry with Alice
+  students[2]="Alice"   # Replace Jerry with Alice
   echo ${students[@]}   # Jeff Alice Jason Jimmy
   ```
 
@@ -122,7 +122,7 @@ Notice that command behaviours may vary depending on different specifications.
 
   ```bash
   echo ${students[@]}   # Jeff Alice Jason Jimmy
-  students[3]=()				# Delete Jason
+  students[3]=()	      # Delete Jason
   echo ${students[@]}   # Jeff Alice Jimmy
   echo ${#students[@]}  # 3
   ```
@@ -147,15 +147,15 @@ Notice that command behaviours may vary depending on different specifications.
   ((e = n % 3))   # e=$((n % 1)), modulo, 1 = 10 % 3
   echo $e         # 1, remainder
   ((f = n ** 2))  # f=$((n ** 2)), 100 = 10 ** 2
-  echo $f					# 100
+  echo $f	        # 100
 
   ((g = n++))     # assign n to g before adding 1 to n, 10 = 10++
   echo $g $n      # 10 11
-  ((h = n--))			# assign n to h first before subtracting 1 from n, 11 = 11--
+  ((h = n--))	# assign n to h first before subtracting 1 from n, 11 = 11--
   echo $h $n      # 11 10
   ((i = ++n))     # add 1 to n before assigning n to i, 11 = ++10
   echo $g $n      # 11 11
-  ((j = --n))			# subtract 1 from n before assigning n to i, 10 = --10
+  ((j = --n))	# subtract 1 from n before assigning n to i, 10 = --10
   echo $h $n      # 10 10
   ```
 

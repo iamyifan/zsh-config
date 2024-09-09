@@ -25,6 +25,8 @@ Notice that command behaviours may vary depending on different specifications.
 - Format: `#!<path_to_shell>` (e.g., `#!/bin/bash` for Bash or `#!/bin/zsh` for Zsh)
 - Position: The **first line** of the script.
 
+[Back to Top](#shell-notebook)
+
 ## Variables
 
 - Definition: A variable can contain **a number**, **a character** or **a string of characters**.
@@ -69,6 +71,8 @@ Notice that command behaviours may vary depending on different specifications.
     file_with_timestamp="file_$(date +%Y-%m-%d).txt"
     ```
 
+[Back to Top](#shell-notebook)
+
 ## Passing Arguments to Scripts
 
 - Format: Append arguments sequentially after the script name. For example:
@@ -83,6 +87,8 @@ Notice that command behaviours may vary depending on different specifications.
   - `$1`, `$2`, `$3`, etc.: The first, second, third, etc. arguments passed to the script.
   - `$@`: All the arguments passed to the script.
   - `$#`: The number of arguments passed to the script.
+
+[Back to Top](#shell-notebook)
 
 ## Arrays
 
@@ -127,6 +133,7 @@ Notice that command behaviours may vary depending on different specifications.
   echo ${#students[@]}  # 3
   ```
 
+[Back to Top](#shell-notebook)
 
 ## Arithmetic Operations
 
@@ -176,6 +183,8 @@ Notice that command behaviours may vary depending on different specifications.
   
   compare 2**3 3**2  # 8 (2^3) is smaller than 9 (3^2)
   ```
+
+[Back to Top](#shell-notebook)
 
 ## String Operations
 
@@ -285,5 +294,7 @@ Notice that command behaviours may vary depending on different specifications.
 	  string="i love shell"
 	  echo ${(C)string}  # I Love Shell
 	  ```
-	
-	  
+
+ [Back to Top](#shell-notebook)
+
+ 

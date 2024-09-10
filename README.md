@@ -296,6 +296,8 @@ Code in this notebook is tested under the following environment:
 	  echo ${(C)string}  # I Love Shell
 	  ```
 
+[Back to Top](#shell-notebook)
+
 ## If Statement
 
 - Syntax
@@ -388,6 +390,8 @@ Code in this notebook is tested under the following environment:
   echo $?							 # 0 (ture)
   ```
 
+[Back to Top](#shell-notebook)
+
 ## Case Statement
 
 - Advantage: When all decision branches depend on a **single variable**, the case statement handles **more efficiently** than the repeated if statement.
@@ -438,4 +442,5 @@ Code in this notebook is tested under the following environment:
 ## To-Do
 
 - [ ] Add double brackets `[[ <expr> ]]` in [If Statement](#if-statement).
+- [ ] Fix indentation problems
 

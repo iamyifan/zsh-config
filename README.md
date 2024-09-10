@@ -19,12 +19,14 @@ Code in this notebook is tested under the following environment:
 - [Passing Arguments to Scripts](#passing-arguments-to-scripts)
 - [Arrays](#arrays)
 - [Arithmetic Operations](#arithmetic-operations)
-- [String Operations](##string-operations)
+- [String Operations](#string-operations)
 
 ## Shebang
 
 - Format: `#!<path_to_shell>` (e.g., `#!/bin/bash` for Bash or `#!/bin/zsh` for Zsh)
 - Position: The **first line** of the script.
+
+[Back to Top](#shell-notebook)
 
 ## Variables
 
@@ -70,6 +72,8 @@ Code in this notebook is tested under the following environment:
     file_with_timestamp="file_$(date +%Y-%m-%d).txt"
     ```
 
+[Back to Top](#shell-notebook)
+
 ## Passing Arguments to Scripts
 
 - Format: Append arguments sequentially after the script name. For example:
@@ -84,6 +88,8 @@ Code in this notebook is tested under the following environment:
   - `$1`, `$2`, `$3`, etc.: The first, second, third, etc. arguments passed to the script.
   - `$@`: All the arguments passed to the script.
   - `$#`: The number of arguments passed to the script.
+
+[Back to Top](#shell-notebook)
 
 ## Arrays
 
@@ -128,6 +134,7 @@ Code in this notebook is tested under the following environment:
   echo ${#students[@]}  # 3
   ```
 
+[Back to Top](#shell-notebook)
 
 ## Arithmetic Operations
 
@@ -177,6 +184,8 @@ Code in this notebook is tested under the following environment:
   
   compare 2**3 3**2  # 8 (2^3) is smaller than 9 (3^2)
   ```
+
+[Back to Top](#shell-notebook)
 
 ## String Operations
 
@@ -429,6 +438,4 @@ Code in this notebook is tested under the following environment:
 ## To-Do
 
 - [ ] Add double brackets `[[ <expr> ]]` in [If Statement](#if-statement).
-
-
 

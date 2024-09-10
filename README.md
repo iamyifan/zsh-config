@@ -9,7 +9,8 @@ Code in this notebook is tested under the following environment:
 - Shell: zsh 5.9
 - Terminal: Apple_Terminal
 
-Notice that command behaviours may vary depending on different specifications.
+> [!WARNING]
+> Notice that command behaviours may vary depending on different specifications.
 
 ## Table of Content
 
@@ -107,7 +108,7 @@ Notice that command behaviours may vary depending on different specifications.
 
   ```bash
   echo ${students[@]}   # Jeff Jerry Jason Jimmy
-  students[2]="Alice"   # Replace Jerry with Alice
+  students[2]="Alice"   # replace Jerry with Alice
   echo ${students[@]}   # Jeff Alice Jason Jimmy
   ```
 
@@ -122,7 +123,7 @@ Notice that command behaviours may vary depending on different specifications.
 
   ```bash
   echo ${students[@]}   # Jeff Alice Jason Jimmy
-  students[3]=()	      # Delete Jason
+  students[3]=()	      # delete Jason
   echo ${students[@]}   # Jeff Alice Jimmy
   echo ${#students[@]}  # 3
   ```
@@ -166,11 +167,11 @@ Notice that command behaviours may vary depending on different specifications.
   
   ```shell
   compare() {
-    # ((<expression>)) will return 0 (false) or 1 (true)
-    if (($1 < $2)); then
-        echo "$(($1)) is smaller than $(($2))"
+  	# ((<expression>)) will return 0 (false) or 1 (true)
+  	if (($1 < $2)); then
+  		echo "$(($1)) is smaller than $(($2))"
     else
-        echo "$(($1)) is greater then $(($2))"
+    	echo "$(($1)) is greater then $(($2))"
     fi
   }
   
@@ -285,5 +286,149 @@ Notice that command behaviours may vary depending on different specifications.
 	  string="i love shell"
 	  echo ${(C)string}  # I Love Shell
 	  ```
-	
-	  
+
+## If Statement
+
+- Syntax
+
+  ```shell
+  # if
+  if [ <if_expr> ]; then
+  	<if_code>
+  fi
+  
+  # if-else
+  if [ <if_expr> ]; then
+  	<if_code>
+  else
+  	<else_code>  
+  fi
+  
+  # if-elif-else
+  if [ <if_expr> ]; then
+  	<if_code>
+  elif [ <elif_expr> ]; then
+  	<elif_code>
+  else
+  	<else_code>
+  fi
+  ```
+
+  In each `[ <expr> ]`, `<expr>` must be separated with **one space** on each side.
+
+- Operators (more details on `man test`)
+
+  | File Operator           | Description                                                  |
+  | ----------------------- | :----------------------------------------------------------- |
+  | `-d <file>`             | True if `<file>` exists and is a directory. |
+  | `-e <file>`             | True if `<file>` exists (regardless of type). |
+  | `-f <file>`             | True if `<file>` exists and is a regular file. |
+  | `-r <file>`             | Ture if `<file>` exists and is readable. |
+  | `-s <file>`             | True if `<file>` exists and has a size greater than zero. |
+  | `-w <file>`             | True if `<file>` exists and is writable.  True indicates only that the write flag is on.  `<fiile>` is not writable on a read-only file system even if this test indicates true. |
+  | `-x <file>`             | True if `<file>` exists and is executable.  True indicates only that the execute flag is on.  If `<file>` is a directory, true indicates that `<file>` can be searched. |
+  | `<file_1> -nt <file_2>` | True if `<file_1>` exists and is newer than `<file_2>`.      |
+  | `<file_1> -ot <file_2>` | True if `<file_1>` exists and is older than `<file_2>`.      |
+  |`<file_1> -ef <file_2>`|True if `<file_1>` and `<file_2>` exist and refer to the same file.|
+  
+  | String Operator      | Description                                                  |
+  | -------------------- | ------------------------------------------------------------ |
+  | `-z <str>`           | True if the length of `<str>` is zero.                       |
+  | `-n <str>`           | True if the length of `<str>` is nonzero.                    |
+  | `<str>`              | True if `<str>` is not the null string.                      |
+  | `<str_1> = <str_2>`  | True if `<str_1>` and `<str_2>` are identical.               |
+  | `<str_1> != <str_2>` | True if `<str_1>` and `<str_2>` are  not identical.          |
+  | `<str_1> < <str_2>`  | True if `<str_1>` comes before `<str_2>` based on the binary value of their characters. |
+  | `<str_1> > <str_2>`  | True if `<str_1>` comes after `<str_2>` based on the binary value of their characters. |
+
+  | Integer Operator              | Description                                                  |
+  | ----------------------------- | ------------------------------------------------------------ |
+  | `<int_1> -eq <int_2>` | True if `<int_1>` and `<int_2>` are algebraically equal. |
+  |`<int_1> -ne <int_2>`|True if `<int_1>` and `<int_2>` are not algebraically equal.|
+  |`<int_1> -gt <int_2>`|True if `<int_1>` is algebraically greater than `<int_2>`.|
+  |`<int_1> -ge <int_2>`|True if `<int_1>` is algebraically greater than or equal to `<int_2>`.|
+  |`<int_1> -lt <int_2>`| True if `<int_1>` is algebraically less than `<int_2>`. |
+  | `<int_1> -le <int_2>` |True if `<int_1>` is algebraically less than or equal to `<int_2>`.|
+  
+  | Logical Operator       | Description                                      |
+  | ---------------------- | ------------------------------------------------ |
+  |`! <expr>`|True if `<expr>` is false.|
+  | `<expr_1> -a <expr_2>` | True if both `<expr_1>` and `<expr_2>` are true. |
+  |`<expr_1> -o <expr_2>`|True if either `<expr_1>` or `<expr_2>` are true.|
+  |`( <expr_1> )`|True if `<expr>` is true. In some cases, parentheses need to be escaped.<br />E.g., `[ \( 1 \lt 2 \) -o \( "a" = "A" \) ]`|
+
+
+- `test <expr>`  is equivalent to `[ <expr> ]`.
+
+- Each evaluation has an **exit status**:
+
+
+  - 0 if the expression is evaluated as **true**;
+
+  - 1 if the expression is evaluated as **false** or **missing**;
+
+  - \>1 if an **error** occurred.
+
+- `$?` holds the exit status of the **last command**.
+
+  ```bash
+  test "bash" = "zsh"  # compare two strings
+  echo $?  						 # 1 (false)
+  
+  [-e /bin/zsh ]       # whether zsh exists
+  echo $?							 # 0 (ture)
+  ```
+
+## Case Statement
+
+- Advantage: When all decision branches depend on a **single variable**, the case statement handles **more efficiently** than the repeated if statement.
+
+- Syntax
+
+  ```shell
+  case ${<variable>} in
+    <case_1>)
+      <case_1_code>
+      ;;  # jump to the end directly
+    <case_2> | <case_3>)  # match case 2 or case 3
+      <case_2_code>
+      ;;
+    *)    # handle any other cases
+      <case_default_code>
+      ;;
+  esac
+  ```
+
+- Example
+
+  ```shell
+  #!/bin/zsh
+  
+  echo "Enter the name of a month:"
+  read month  # read a month name from the terminal input
+  
+  case $month in
+  	"February")
+  		echo "There are 28/29 days in $month."
+  		;;
+    "April" | "June" | "September" | "November")
+  		echo "There are 30 days in $month."
+  		;;
+    "January" | "March" | "May" | "July" | "August" | "October" | "December")
+  		echo "There are 31 days in $month."
+  		;;
+    *)
+  		echo "Please check if you entered the correct month name.";;
+  esac
+  ```
+
+[Back to Top](#shell-notebook)
+
+---
+
+## To-Do
+
+- [ ] Add double brackets `[[ <expr> ]]` in [If Statement](#if-statement).
+
+
+

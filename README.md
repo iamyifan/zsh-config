@@ -206,7 +206,7 @@ Code in this notebook is tested under the following environment:
     ```bash
     string="hello world"
     substring=${string:6:5}  # a substring of length 5 starting after the index 6
-    echo ${substring}  			 # "world"
+    echo ${substring}   # "world"
     ```
 
   - `${<string>:<start>>`: Extract a substring starting after the index `<start>` and ending to the end of line.
@@ -214,7 +214,7 @@ Code in this notebook is tested under the following environment:
     ```bash
     string="hello world"
     substring=${string:2}  # a substring starting after the index 2
-    echo ${substring}			 # "llo world"
+    echo ${substring}   # "llo world"
     ```
 
 - **Replacing Substrings**
@@ -392,10 +392,10 @@ Code in this notebook is tested under the following environment:
 
   ```bash
   test "bash" = "zsh"  # compare two strings
-  echo $?  						 # 1 (false)
+  echo $?   # 1 (false)
   
   [-e /bin/zsh ]       # whether zsh exists
-  echo $?							 # 0 (ture)
+  echo $?   # 0 (ture)
   ```
 
 [Back to Top](#shell-notebook)

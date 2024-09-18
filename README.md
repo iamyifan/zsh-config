@@ -14,12 +14,18 @@ Code in this notebook is tested under the following environment:
 
 ## Table of Content
 
-- [Shebang](#shebang)
-- [Variables](#variables)
-- [Passing Arguments to Scripts](#passing-arguments-to-scripts)
-- [Arrays](#arrays)
-- [Arithmetic Operations](#arithmetic-operations)
-- [String Operations](#string-operations)
+- [Shell Notebook](#shell-notebook)
+  - [Announcement](#announcement)
+  - [Table of Content](#table-of-content)
+  - [Shebang](#shebang)
+  - [Variables](#variables)
+  - [Passing Arguments to Scripts](#passing-arguments-to-scripts)
+  - [Arrays](#arrays)
+  - [Arithmetic Operations](#arithmetic-operations)
+  - [String Operations](#string-operations)
+  - [If Statement](#if-statement)
+  - [Case Statement](#case-statement)
+  - [To-Do](#to-do)
 
 ## Shebang
 
@@ -32,7 +38,7 @@ Code in this notebook is tested under the following environment:
 
 - Definition: A variable can contain **a number**, **a character** or **a string of characters**.
 
-  ```shell
+  ```bash
   STUDENT_AGE=18
   StudentGender="F"    # StudentGender=F
   studentName="Alice"  # studentName=Alice
@@ -95,7 +101,7 @@ Code in this notebook is tested under the following environment:
 
 - Format:  `(<element_1> <element_2> <element_3> <etc.>)`
 
-  ```shell
+  ```bash
   null=()
   students=("Jeff" "Jerry" "Jason" "Jimmy")
   ```
@@ -140,7 +146,7 @@ Code in this notebook is tested under the following environment:
 
 - Syntax: `((<expression>))` or `$((<expression>))`
 
-  ```shell
+  ```bash
   n=10
 
   ((a = n + 1))   # a=$((n + 1)), 11 = 10 + 1
@@ -172,13 +178,13 @@ Code in this notebook is tested under the following environment:
   - `((<expression>))`: Used for arithmetic operations, assignments, and conditional checks.
   - `$((<expression>))`: Used for inline calculations, variable assignments, and output.
   
-  ```shell
+  ```bash
   compare() {
   	# ((<expression>)) will return 0 (false) or 1 (true)
-  	if (($1 < $2)); then
-  		echo "$(($1)) is smaller than $(($2))"
-    else
-    	echo "$(($1)) is greater then $(($2))"
+    if (($1 < $2)); then 
+      echo "$(($1)) is smaller than $(($2))"
+    else 
+      echo "$(($1)) is greater then $(($2))"
     fi
   }
   
@@ -195,7 +201,7 @@ Code in this notebook is tested under the following environment:
 
   -  `${<string>:<start>:<length>}`: Extract a substring of length `<length>` starting after the index `<start>`.
 
-    ```shell
+    ```bash
     string="hello world"
     substring=${string:6:5}  # a substring of length 5 starting after the index 6
     echo ${substring}  			 # "world"
@@ -203,7 +209,7 @@ Code in this notebook is tested under the following environment:
 
   - `${<string>:<start>>`: Extract a substring starting after the index `<start>` and ending to the end of line.
 
-    ```shell
+    ```bash
     string="hello world"
     substring=${string:2}  # a substring starting after the index 2
     echo ${substring}			 # "llo world"
@@ -215,7 +221,7 @@ Code in this notebook is tested under the following environment:
 
     Format: `${<string>[@]/$<substring_to_replace>/$<replacement_of_substring>}`
 
-    ```shell
+    ```bash
     string="To study or not to study, that is the question."
     substring="study"
     replacement="sleep"
@@ -226,7 +232,7 @@ Code in this notebook is tested under the following environment:
 	
 	  Format: `${<string>[@]//$<substring_to_replace>/$<replacement_of_substring>}`
 	
-	  ```shell
+	  ```bash
 	  string="To study or not to study, that is the question."
 	  substring="study"
 	  replacement="be"
@@ -237,7 +243,7 @@ Code in this notebook is tested under the following environment:
 	
 	  Format: `${<string>[@]/$<substring_to_replace>}`
 	
-	  ```shell
+	  ```bash
 	  string="To study or not to study, that is the question."
 	  substring=" study"
 	  echo ${string[@]/$substring}  # "To or not to study, that is the question."
@@ -247,7 +253,7 @@ Code in this notebook is tested under the following environment:
 	
 	  Format: `${<string>[@]//$<substring_to_replace>}`
 	
-	  ```shell
+	  ```bash
 	  string="To study or not to study, that is the question."
 	  substring=" study"
 	  echo ${string[@]//$substring}  # "To or not to, that is the question."
@@ -257,7 +263,7 @@ Code in this notebook is tested under the following environment:
 
 	  Format: `${<string>[@]/#$<substring_to_replace>/$<replacement_of_substring>}`
 	
-	  ```shell
+	  ```bash
 	  string="To study or not to study, that is the question."
 	  substring="To study"
 	  replacement="To play"
@@ -268,7 +274,7 @@ Code in this notebook is tested under the following environment:
 	
 	  Format: `${<string>[@]/%$<substring_to_replace>/$<replacement_of_substring>}`
 	
-	  ```shell
+	  ```bash
 	  string="To study or not to study, that is the question."
 	  substring="the question."
 	  replacement="not a question."
@@ -281,7 +287,7 @@ Code in this notebook is tested under the following environment:
 
     Format: `${<string>:u}` for uppercasing; `${<string>:l}` for lowercasing
 
-    ```shell
+    ```bash
     string="Hello World"
     echo ${string:u}  # HELLO WORLD
     echo ${string:l}  # hello world
@@ -291,7 +297,7 @@ Code in this notebook is tested under the following environment:
 	
 	  Format: `${(C)<string>}`
 	
-	  ```shell
+	  ```bash
 	  string="i love shell"
 	  echo ${(C)string}  # I Love Shell
 	  ```
@@ -302,26 +308,26 @@ Code in this notebook is tested under the following environment:
 
 - Syntax
 
-  ```shell
+  ```bash
   # if
-  if [ <if_expr> ]; then
-  	<if_code>
+  if [ <if_expr> ]; then 
+    <if_code>
   fi
   
   # if-else
-  if [ <if_expr> ]; then
-  	<if_code>
-  else
-  	<else_code>  
+  if [ <if_expr> ]; then 
+    <if_code>
+  else 
+    <else_code>  
   fi
   
   # if-elif-else
-  if [ <if_expr> ]; then
-  	<if_code>
-  elif [ <elif_expr> ]; then
-  	<elif_code>
-  else
-  	<else_code>
+  if [ <if_expr> ]; then 
+    <if_code>
+  elif [ <elif_expr> ]; then 
+    <elif_code>
+  else 
+    <else_code>
   fi
   ```
 
@@ -398,7 +404,7 @@ Code in this notebook is tested under the following environment:
 
 - Syntax
 
-  ```shell
+  ```bash
   case ${<variable>} in
     <case_1>)
       <case_1_code>
@@ -414,7 +420,7 @@ Code in this notebook is tested under the following environment:
 
 - Example
 
-  ```shell
+  ```bash
   #!/bin/zsh
   
   echo "Enter the name of a month:"

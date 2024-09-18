@@ -405,18 +405,23 @@ Code in this notebook is tested under the following environment:
 - Syntax
 
   ```bash
-  case ${<variable>} in
-    <case_1>)
+  case ${<variable>} in 
+    <case_1>) 
       <case_1_code>
-      ;;  # jump to the end directly
-    <case_2> | <case_3>)  # match case 2 or case 3
+      ;; 
+    <case_2> | <case_3>) 
       <case_2_code>
       ;;
-    *)    # handle any other cases
+    *)
       <case_default_code>
       ;;
   esac
   ```
+  
+  The Double semicolon `;;` will terminate the `case` statement and jump to the end of the code.
+
+  The asterisk symbol `*)` will be used as the **default case**, which will handle all the other cases that are not matched above.
+
 
 - Example
 
@@ -426,18 +431,19 @@ Code in this notebook is tested under the following environment:
   echo "Enter the name of a month:"
   read month  # read a month name from the terminal input
   
-  case $month in
-  	"February")
-  		echo "There are 28/29 days in $month."
-  		;;
-    "April" | "June" | "September" | "November")
-  		echo "There are 30 days in $month."
-  		;;
-    "January" | "March" | "May" | "July" | "August" | "October" | "December")
-  		echo "There are 31 days in $month."
-  		;;
-    *)
-  		echo "Please check if you entered the correct month name.";;
+  case $month in 
+    "February") 
+      echo "There are 28/29 days in $month." 
+      ;; 
+    "April" | "June" | "September" | "November") 
+      echo "There are 30 days in $month." 
+      ;; 
+    "January" | "March" | "May" | "July" | "August" | "October" | "December") 
+      echo "There are 31 days in $month." 
+      ;; 
+    *) 
+      echo "Please check if you entered the correct month name." 
+      ;;
   esac
   ```
 
@@ -449,4 +455,3 @@ Code in this notebook is tested under the following environment:
 
 - [ ] Add double brackets `[[ <expr> ]]` in [If Statement](#if-statement).
 - [ ] Fix indentation problems
-

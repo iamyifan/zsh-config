@@ -25,6 +25,9 @@ Code in this notebook is tested under the following environment:
   - [String Operations](#string-operations)
   - [If Statement](#if-statement)
   - [Case Statement](#case-statement)
+  - [For Loop Statement](#for-loop-statement)
+  - [While Loop Statement](#while-loop-statement)
+  - [Break and Continue Statement](#break-and-continue-statement)
   - [To-Do](#to-do)
 
 ## Shebang
@@ -179,9 +182,8 @@ Code in this notebook is tested under the following environment:
   - `$((<expression>))`: Used for inline calculations, variable assignments, and output.
   
   ```bash
-  compare() {
-  	# ((<expression>)) will return 0 (false) or 1 (true)
-    if (($1 < $2)); then 
+  compare() { 
+    if (($1 < $2)); then  # ((<expression>)) will return 0 (false) or 1 (true) 
       echo "$(($1)) is smaller than $(($2))"
     else 
       echo "$(($1)) is greater then $(($2))"
@@ -449,9 +451,111 @@ Code in this notebook is tested under the following environment:
 
 [Back to Top](#shell-notebook)
 
+## For Loop Statement
+
+Syntax
+
+```bash
+for <arg> in <array>; do 
+  <code>
+done
+```
+
+Example:
+
+```bash
+#!/bin/zsh
+
+students=("Jeff" "Jerry" "Jason" "Jimmy")
+# The following loop will print all the student names one by one
+for student in ${students[@]}; do 
+  echo $student 
+done
+```
+
+```bash
+Jeff
+Jerry
+Jason
+Jimmy
+```
+
+[Back to Top](#shell-notebook)
+
+## While Loop Statement
+
+Syntax:
+
+```bash
+while [ <condition> ]
+do
+  <code>
+done
+```
+
+Example:
+  
+```bash
+#!/bin/zsh
+
+students=("Jeff" "Jerry" "Jason" "Jimmy") 
+# While the array contains more than one name
+while [ ${#students[@]} -gt 0 ]; do 
+  # Print the remaining student names 
+  echo ${students[@]} 
+  # Delete the last studnet name 
+  students[-1]=() 
+done
+```
+
+```bash
+Jeff Jerry Jason Jimmy
+Jeff Jerry Jason
+Jeff Jerry
+Jeff
+```
+
+[Back to Top](#shell-notebook)
+
+## Break and Continue Statement
+
+Once `break` is encountered, the loop terminates, and no further iterations are executed
+
+Once `continue` is encountered, the remaining code in that iteration is skipped, but the loop itself continues with the next iterations.
+
+Example:
+
+```bash
+#/bin/zsh
+
+# The following example will print all the even numbers less than 10
+for num in {0..100}; do
+  if (($num > 10)); then 
+    break
+  fi
+  if (($num % 2 == 0)); then 
+    echo $num
+    ((num = num + 1))
+  else
+    ((num = num + 1))
+    continue
+  fi
+done
+```
+
+```bash
+0
+2
+4
+6
+8
+10
+```
+
+[Back to Top](#shell-notebook)
+
 ---
 
 ## To-Do
 
-- [ ] Add double brackets `[[ <expr> ]]` in [If Statement](#if-statement).
-- [ ] Fix indentation problems
+- [ ] TODO

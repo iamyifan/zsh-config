@@ -526,7 +526,7 @@ Once `continue` is encountered, the remaining code in that iteration is skipped,
 Example:
 
 ```bash
-#/bin/zsh
+#!/bin/zsh
 
 # The following example will print all the even numbers less than 10
 for num in {0..100}; do

@@ -168,11 +168,11 @@ Code in this notebook is tested under the following environment:
 
   ((g = n++))     # assign n to g before adding 1 to n, 10 = 10++
   echo $g $n      # 10 11
-  ((h = n--))	# assign n to h first before subtracting 1 from n, 11 = 11--
+  ((h = n--))	    # assign n to h first before subtracting 1 from n, 11 = 11--
   echo $h $n      # 11 10
   ((i = ++n))     # add 1 to n before assigning n to i, 11 = ++10
   echo $g $n      # 11 11
-  ((j = --n))	# subtract 1 from n before assigning n to i, 10 = --10
+  ((j = --n))	    # subtract 1 from n before assigning n to i, 10 = --10
   echo $h $n      # 10 10
   ```
 

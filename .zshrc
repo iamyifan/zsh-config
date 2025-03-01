@@ -114,14 +114,14 @@ source $ZSH/oh-my-zsh.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/<user_name>/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/<user_name>/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/<user_name>/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/<user_name>/anaconda3/bin:$PATH"
+        export PATH="/opt/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -155,22 +155,22 @@ echo """
 # export/alias---{{{
 
 # directory shortcut
-export dt='/Users/<user_name>/Desktop'
+export dt='/Users/yifan/Desktop'
 alias dt='cd ${dt}'
-export gh='/Users/<user_name>/Documents/GitHub'
+export gh='/Users/yifan/Documents/GitHub'
 alias gh='cd ${gh}'
-export hf='/Users/<user_name>/Documents/Hugging_Face'
+export hf='/Users/yifan/Documents/Hugging_Face'
 alias hf='cd ${hf}'
-export anu='/Users/<user_name>/Documents/ANU'
+export anu='/Users/yifan/Documents/ANU'
 alias anu='cd ${anu}'
 
 # application shortcut
-alias dafny='/opt/homebrew/bin/dotnet /Users/<user_name>/.vscode/extensions/dafny-lang.ide-vscode-3.3.1/out/resources/4.7.0/github/dafny/Dafny.dll'
-alias regex='source ~/Documents/.regex_cheatsheet.sh'  # print a regex cheatsheet
-alias dict='conda activate base; python3 ${gh}/dict/main.py'
+alias regex='source ~/Documents/.regex_cheatsheet.sh'         # print a regex cheatsheet
+alias dict='conda activate base; python3 ${gh}/dict/main.py'  # a dictionary tool
 
 # command alias
 alias btop='sudo btop -lc'
+alias asitop='sudo asitop'
 alias c='clear'
 
 # }}}
